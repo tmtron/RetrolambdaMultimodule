@@ -1,7 +1,5 @@
 package com.tmtron.retrolambdamultimodule;
 
-import android.os.Debug;
-
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -16,6 +14,7 @@ public class Java8UnitTestAndroid {
         strings.add("a");
         strings.add("b");
 
+        // test works in Android Studio and in the command line Gradle build
         Assert.assertTrue(strings.stream().anyMatch(item -> item.equals("a")));
     }
 }
