@@ -1,4 +1,24 @@
 apply plugin: 'com.android.application'
+/* In this branch we use retrolambda only for the android module
+
+** Retrolambda only for app module **
+When I use another build file, where I only apply retrolambda to the app module (but not to the java module):
+
+ * the tests in Android Studio still work
+ * the tests on the command line will work
+ * I cannot start the app (emulator or real device):
+   `Error:Error converting bytecode to dex:`
+   `Cause: Dex cannot parse version 52 byte code.`
+ */
+apply plugin: 'me.tatarka.retrolambda'
+
+// see: https://github.com/evant/gradle-retrolambda/blob/master/README.md#configuration
+retrolambda {
+    jdk System.getenv("JAVA_HOME")
+    // this is required when you build from the command line
+    oldJdk System.getenv("JAVA7_HOME")
+    javaVersion JavaVersion.VERSION_1_7
+}
 
 android {
     compileSdkVersion 25
